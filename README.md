@@ -140,3 +140,47 @@ MCP als Standard für agentische Tool-Integration. MiroRL und MiroFlow setzen be
 Geschlossene RL-Schleife mit echter Nutzerfeedback. Das nächste logische Upgrade von MiroRL ist die Integration von Human-Feedback-Signalen aus dem Online-Demo — wenn echter Nutzernutzen als Reward-Signal ins RL einfliesst, entsteht ein sich selbst verbesserndes Produktionssystem.
 
 Wie Sie es heute konkret nutzen können: Den schnellsten Einstieg bieten MiroFlow (nur OpenRouter-Key nötig) für erste Experimente oder MiroThinker mit dem Minimal-Setup (Serper + Jina + E2B) für produktiven Einsatz. Wer eigene Modelle trainieren möchte, startet mit MiroTrain auf dem MiroVerse-Datensatz. Wer die volle Kontrolle über die RL-Schleife will und Rechenbudget hat, setzt MiroRL für domänenspezifisches Reinforcement Learning ein. Die Community ist aktiv (Discord, 1,2K Follower, 6,5K Sterne für MiroThinker), und alle Komponenten sind vollständig dokumentiert — ein ungewöhnlich durchdachtes und zusammenhängendes Open-Source-Ökosystem für autonome KI-Agenten.
+
+---
+
+## Agentic Architecture
+
+> Konsolidiert aus dem ehemaligen AgenticFramework-Repository.
+
+### Agent-Architekturen
+- **ReAct** (Reason + Act)
+- **Plan-and-Execute**
+- **Multi-Agent Orchestrierung** (Nemotron 126-Agent System)
+- **Tool-Calling Patterns**: XML vs JSON vs Function Calling
+
+### Lokale vs Cloud Agenten
+- LocoOperator-4B: 2.5GB, 100% JSON Validity, Tool-Calling
+- Nemotron-3-Nano 30B: 126 spezialisierte Sub-Agenten
+- Hybride Architektur: Cloud fuer Planung, Lokal fuer Ausfuehrung
+
+### Hybrid Agent Loop
+```
+User Task
+    |
+[Claude Code] <-> [Nemotron Sidekick]
+    |                    |
+[Plan]            [Research]
+    |                    |
+[LocoOperator]    [Code Review]
+    |                    |
+[Execute]         [Improve]
+    |                    |
+[Memory Store] <-> [Task Decompose]
+```
+
+### Unsere Implementierung
+- **Agent Forge**: Loop Agent + Self-Improve Pipeline
+- **Ollama Sidekick**: Research-First + Auto-Review
+- **LocoOperator**: Autonome Codebase-Navigation
+- **Memory Framework**: sqlite + Decay + Reinforcement
+
+### Self-Improvement Patterns
+- Continuous Code Review
+- Automatische Refactoring-Vorschlaege
+- Performance-Monitoring
+- A/B Testing von Agent-Strategien
